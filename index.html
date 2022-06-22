@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1 id="TESTE"></h1>
+
+
+    <h2 id="TESTE2"></h2>
+    
+
+    <img id="TESTE3"></img>
+
+    <div></div>
+
+
+    <script>
+        fetch('http://servicodados.ibge.gov.br/api/v3/noticias/',  {
+            method: "GET"
+          })
+          .then((res) => res.json())
+          .then((data) => {
+             console.log(data)
+
+             document.querySelector("#TESTE").innerHTML= data.items[0].titulo
+
+             document.querySelector("#TESTE2").innerHTML= data.items[0].introducao
+        })
+          .catch((err) => {
+            console.log(err);
+          });
+
+          fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY',  {
+            method: "GET"
+          })
+          .then((res) => res.json())
+          .then((data) => {
+             console.log(data)
+
+             document.querySelector("#TESTE3").setAttribute("src",data.hdurl ) 
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+       
+
+          fetch("https://viacep.com.br/ws/01001000/json/").then((res) => res.json())
+            .then((data) => {
+             console.log("Valor: ",data)
+             
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    </script>
+</body>
+</html>
